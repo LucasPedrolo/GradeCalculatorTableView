@@ -18,7 +18,7 @@
 		4DB37A6929797FE30031100A /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB37A6829797FE30031100A /* RegisterView.swift */; };
 		4DB37A6B29797FF70031100A /* SubjectListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB37A6A29797FF70031100A /* SubjectListTableView.swift */; };
 		4DB37A6D2979800B0031100A /* GradeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB37A6C2979800B0031100A /* GradeDetailsView.swift */; };
-		4DB37A71297980450031100A /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB37A70297980450031100A /* SignInViewModel.swift */; };
+		4DB37A71297980450031100A /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB37A70297980450031100A /* RegisterViewModel.swift */; };
 		4DB37A73297980610031100A /* GradeDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB37A72297980610031100A /* GradeDetailsViewModel.swift */; };
 		4DB37A77297980F10031100A /* RegisterGrades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB37A76297980F10031100A /* RegisterGrades.swift */; };
 		4DB37A79297980FF0031100A /* Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB37A78297980FF0031100A /* Grades.swift */; };
@@ -42,7 +42,7 @@
 		4DB37A6829797FE30031100A /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		4DB37A6A29797FF70031100A /* SubjectListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectListTableView.swift; sourceTree = "<group>"; };
 		4DB37A6C2979800B0031100A /* GradeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeDetailsView.swift; sourceTree = "<group>"; };
-		4DB37A70297980450031100A /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		4DB37A70297980450031100A /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		4DB37A72297980610031100A /* GradeDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeDetailsViewModel.swift; sourceTree = "<group>"; };
 		4DB37A76297980F10031100A /* RegisterGrades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterGrades.swift; sourceTree = "<group>"; };
 		4DB37A78297980FF0031100A /* Grades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grades.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		4DB37A59297978840031100A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				4DB37A70297980450031100A /* SignInViewModel.swift */,
+				4DB37A70297980450031100A /* RegisterViewModel.swift */,
 				4DB37A72297980610031100A /* GradeDetailsViewModel.swift */,
 			);
 			path = ViewModel;
@@ -268,7 +268,7 @@
 				4DB37A48297977E20031100A /* HomeViewController.swift in Sources */,
 				4DB37A44297977E20031100A /* AppDelegate.swift in Sources */,
 				4DB37A79297980FF0031100A /* Grades.swift in Sources */,
-				4DB37A71297980450031100A /* SignInViewModel.swift in Sources */,
+				4DB37A71297980450031100A /* RegisterViewModel.swift in Sources */,
 				4DB37A7E29798E970031100A /* BaseView.swift in Sources */,
 				4DB37A842979B7940031100A /* BaseTableCell.swift in Sources */,
 				4DB37A6B29797FF70031100A /* SubjectListTableView.swift in Sources */,

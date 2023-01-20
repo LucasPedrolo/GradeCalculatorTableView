@@ -39,10 +39,6 @@ class SubjectListTableViewCell: BaseTableCell {
         return subject
     }()
     
-    override func layoutSubviews() {
-        frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
-    }
-    
     override func addSubview() {
         addSubview(container)
         container.addSubview(image)

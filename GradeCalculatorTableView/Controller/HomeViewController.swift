@@ -10,6 +10,8 @@ import UIKit
 class HomeViewController: UIViewController {
 
     var homeView = HomeView()
+    var registerGrade: RegisterGrades?
+    var grade: RegisterGrades?
     
     override func loadView() {
         view = homeView

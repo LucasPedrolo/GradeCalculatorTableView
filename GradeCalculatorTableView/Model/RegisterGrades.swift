@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct RegisterGrades {
-    
+struct RegisterGrades: Codable {
     var name: String?
     var subject: String?
     var grades: Grades?

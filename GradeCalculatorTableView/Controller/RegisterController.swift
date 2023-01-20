@@ -9,6 +9,7 @@ import UIKit
 
 class RegisterViewController: UIViewController {
     var registerView = RegisterView()
+    var viewModel = RegisterViewModel()
     
     override func loadView() {
         view = registerView
@@ -19,7 +20,7 @@ class RegisterViewController: UIViewController {
         
         addDelegates()
         
-        registerView.goHomeButton.addTarget(self, action: #selector(goHome), for: .touchUpInside)
+        registerView.goHomeButton.addTarget(self, action: #selector(navigation), for: .touchUpInside)
     }
     
     func addDelegates() {
@@ -31,9 +32,14 @@ class RegisterViewController: UIViewController {
         registerView.grade4TxtField.delegate = self
     }
     
-    @objc func goHome() {
+    @objc func navigation() {
         let home = HomeViewController()
+        let validation = viewModel.dataGrade(name: registerView.nameTxtField.text ?? defString, subject: registerView.subjectTxtField.text ?? defString, grades: Grades(grade1: Int(registerView.grade1TxtField.text ?? defString) ?? defInt, grade2: Int(registerView.grade2TxtField.text ?? defString) ?? defInt, grade3: Int(registerView.grade3TxtField.text ?? defString) ?? defInt, grade4: Int(registerView.grade4TxtField.text ?? defString) ?? defInt))
         
+        let encoder = JSONEncoder()
+        if let encode = try? encoder.encode(validation) {
+            UserDefaults.standard.set(encode, forKey: "validation")
+        }
         navigationController?.pushViewController(home, animated: true)
     }
 }
@@ -58,7 +64,7 @@ extension RegisterViewController: UITextFieldDelegate {
             registerView.grade4TxtField.becomeFirstResponder()
         } else {
             registerView.grade4TxtField.resignFirstResponder()
-            goHome()
+            navigation()
         }
         
         return true

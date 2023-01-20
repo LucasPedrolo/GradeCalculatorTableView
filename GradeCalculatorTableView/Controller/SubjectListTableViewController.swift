@@ -10,6 +10,8 @@ import UIKit
 class SubjectListTableViewController: UIViewController {
     
     let customView = SubjectListTableView()
+    var grades: [RegisterGrades]?
+    var grade: RegisterGrades?
     
     override func loadView() {
         view = customView
@@ -17,10 +19,18 @@ class SubjectListTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDelegate()
+        setTableViewDelegate()
+        setUserDefault()
     }
     
-    func setDelegate() {
+    func setUserDefault() {
+        if let data = UserDefaults.standard.object(forKey: "validation") as? Data,
+           let validation = try? JSONDecoder().decode(RegisterGrades.self, from: data) {
+            self.grade = validation
+        }
+    }
+    
+    func setTableViewDelegate() {
         customView.tableView.delegate = self
         customView.tableView.dataSource = self
     }
@@ -30,7 +40,7 @@ extension SubjectListTableViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,4 +52,9 @@ extension SubjectListTableViewController: UITableViewDelegate, UITableViewDataSo
         
         return 80
     }
+    
+//    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+//        
+//    }
+    
 }
