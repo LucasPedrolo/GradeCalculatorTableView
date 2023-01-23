@@ -25,7 +25,9 @@ class SubjectListTableViewController: UIViewController {
     func setUserDefault() {
         if let data = UserDefaults.standard.object(forKey: "validation") as? Data,
            let validation = try? JSONDecoder().decode(Array<RegisterGrades>.self, from: data) {
-            self.grades = validation
+            for i in validation {
+                self.grades.append(i)
+            }
         }
     }
     
@@ -39,16 +41,13 @@ extension SubjectListTableViewController: UITableViewDelegate, UITableViewDataSo
     
     //Define o número de células da lista
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return grades.count
     }
     
     //Define a classe responsável por customizar a célula e também passa dados para dentro do didSet
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: customView.cellID, for: indexPath) as! SubjectListTableViewCell
-        
-        cell.grade = grades[indexPath.row]
-        
+        cell.grade = grades[indexPath.item]
         return cell
     }
     

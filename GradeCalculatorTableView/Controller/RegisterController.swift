@@ -35,11 +35,9 @@ class RegisterViewController: UIViewController {
     }
     
     @objc func navigation() {
-        let home = HomeViewController()
+        let home = SubjectListTableViewController()
         
-        if let validation = populateValidationItem() {
-            validationList.append(validation)
-        }
+        validationList.append(populateValidationItem())
         
         if let encode = try? JSONEncoder().encode(validationList) {
             UserDefaults.standard.set(encode, forKey: "validation")
@@ -47,13 +45,14 @@ class RegisterViewController: UIViewController {
         navigationController?.pushViewController(home, animated: true)
     }
     
-    func populateValidationItem() -> RegisterGrades? {
+    func populateValidationItem() -> RegisterGrades {
         let validation = viewModel.dataGrade(name: registerView.nameTxtField.text ?? defString, subject: registerView.subjectTxtField.text ?? defString, grades: Grades(grade1: Int(registerView.grade1TxtField.text ?? defString) ?? defInt, grade2: Int(registerView.grade2TxtField.text ?? defString) ?? defInt, grade3: Int(registerView.grade3TxtField.text ?? defString) ?? defInt, grade4: Int(registerView.grade4TxtField.text ?? defString) ?? defInt))
         
         if let validation = validation {
             return validation
         }
-        return nil
+        
+        return RegisterGrades()
     }
 }
 
@@ -79,7 +78,6 @@ extension RegisterViewController: UITextFieldDelegate {
             registerView.grade4TxtField.resignFirstResponder()
             navigation()
         }
-        
         return true
     }
 }
