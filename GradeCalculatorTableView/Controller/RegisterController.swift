@@ -8,8 +8,10 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
+    
     var registerView = RegisterView()
     var viewModel = RegisterViewModel()
+    var validationList: [RegisterGrades] = []
     
     override func loadView() {
         view = registerView
@@ -34,13 +36,24 @@ class RegisterViewController: UIViewController {
     
     @objc func navigation() {
         let home = HomeViewController()
-        let validation = viewModel.dataGrade(name: registerView.nameTxtField.text ?? defString, subject: registerView.subjectTxtField.text ?? defString, grades: Grades(grade1: Int(registerView.grade1TxtField.text ?? defString) ?? defInt, grade2: Int(registerView.grade2TxtField.text ?? defString) ?? defInt, grade3: Int(registerView.grade3TxtField.text ?? defString) ?? defInt, grade4: Int(registerView.grade4TxtField.text ?? defString) ?? defInt))
         
-        let encoder = JSONEncoder()
-        if let encode = try? encoder.encode(validation) {
+        if let validation = populateValidationItem() {
+            validationList.append(validation)
+        }
+        
+        if let encode = try? JSONEncoder().encode(validationList) {
             UserDefaults.standard.set(encode, forKey: "validation")
         }
         navigationController?.pushViewController(home, animated: true)
+    }
+    
+    func populateValidationItem() -> RegisterGrades? {
+        let validation = viewModel.dataGrade(name: registerView.nameTxtField.text ?? defString, subject: registerView.subjectTxtField.text ?? defString, grades: Grades(grade1: Int(registerView.grade1TxtField.text ?? defString) ?? defInt, grade2: Int(registerView.grade2TxtField.text ?? defString) ?? defInt, grade3: Int(registerView.grade3TxtField.text ?? defString) ?? defInt, grade4: Int(registerView.grade4TxtField.text ?? defString) ?? defInt))
+        
+        if let validation = validation {
+            return validation
+        }
+        return nil
     }
 }
 

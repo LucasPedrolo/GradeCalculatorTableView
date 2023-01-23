@@ -10,8 +10,7 @@ import UIKit
 class SubjectListTableViewController: UIViewController {
     
     let customView = SubjectListTableView()
-    var grades: [RegisterGrades]?
-    var grade: RegisterGrades?
+    var grades: [RegisterGrades] = []
     
     override func loadView() {
         view = customView
@@ -25,8 +24,8 @@ class SubjectListTableViewController: UIViewController {
     
     func setUserDefault() {
         if let data = UserDefaults.standard.object(forKey: "validation") as? Data,
-           let validation = try? JSONDecoder().decode(RegisterGrades.self, from: data) {
-            self.grade = validation
+           let validation = try? JSONDecoder().decode(Array<RegisterGrades>.self, from: data) {
+            self.grades = validation
         }
     }
     
@@ -38,23 +37,29 @@ class SubjectListTableViewController: UIViewController {
 
 extension SubjectListTableViewController: UITableViewDelegate, UITableViewDataSource {
     
+    //Define o número de células da lista
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1
+        return grades.count
     }
     
+    //Define a classe responsável por customizar a célula e também passa dados para dentro do didSet
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: customView.cellID, for: indexPath) as! SubjectListTableViewCell
+        
+        cell.grade = grades[indexPath.row]
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let gradeDetailViewController = GradeDetailsViewController()
+        gradeDetailViewController.getData(registerGrade: grades[indexPath.row])
+        self.navigationController?.pushViewController(gradeDetailViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return 80
     }
-    
-//    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-//        
-//    }
-    
 }

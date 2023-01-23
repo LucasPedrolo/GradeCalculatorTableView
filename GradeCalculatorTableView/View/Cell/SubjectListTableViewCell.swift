@@ -9,6 +9,12 @@ import UIKit
 
 class SubjectListTableViewCell: BaseTableCell {
     
+    var grade: RegisterGrades? {
+        didSet {
+            subjectLabel.text = grade?.subject
+        }
+    }
+    
     lazy var container: UIView = {
         let test = UIView()
         test.layer.masksToBounds = true
