@@ -20,12 +20,12 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addDelegates()
+        addDelegados()
         
         registerView.goHomeButton.addTarget(self, action: #selector(navigation), for: .touchUpInside)
     }
     
-    func addDelegates() {
+    func addDelegados() {
         registerView.nameTxtField.delegate = self
         registerView.subjectTxtField.delegate = self
         registerView.grade1TxtField.delegate = self
@@ -51,7 +51,6 @@ class RegisterViewController: UIViewController {
         if let validation = validation {
             return validation
         }
-        
         return RegisterGrades()
     }
 }
@@ -59,7 +58,7 @@ class RegisterViewController: UIViewController {
 extension RegisterViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-
+        
         if textField.isEqual(registerView.nameTxtField) {
             registerView.subjectTxtField.becomeFirstResponder()
         }

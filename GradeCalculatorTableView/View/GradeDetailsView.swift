@@ -10,8 +10,8 @@ import UIKit
 class GradeDetailsView: BaseView {
     var grade: RegisterGrades? {
         didSet {
-            nameLabel.text = "Name: \(grade?.name ?? "Error")"
-            subjectLabel.text = "Subject: \(grade?.subject ?? "Error")"
+            nameLabel.text = "Name: \(grade?.name ?? defString)"
+            subjectLabel.text = "Subject: \(grade?.subject ?? defString)"
             grade1TxtField.text = "\(grade?.grades?.grade1 ?? defInt)"
             grade2TxtField.text = "\(grade?.grades?.grade2 ?? defInt)"
             grade3TxtField.text = "\(grade?.grades?.grade3 ?? defInt)"

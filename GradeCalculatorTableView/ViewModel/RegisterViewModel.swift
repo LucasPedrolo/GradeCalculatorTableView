@@ -12,7 +12,7 @@ class RegisterViewModel {
     func dataGrade(name: String?, subject: String?, grades: Grades?) -> RegisterGrades?  {
         
         let register = RegisterGrades(name: name, subject: subject, grades: grades)
-            
-            return register
+        
+        return register
     }
 }

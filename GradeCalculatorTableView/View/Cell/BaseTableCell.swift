@@ -13,7 +13,6 @@ class BaseTableCell: UITableViewCell {
         
         addSubview()
         setConstraint()
-        
     }
     
     required init?(coder: NSCoder) {

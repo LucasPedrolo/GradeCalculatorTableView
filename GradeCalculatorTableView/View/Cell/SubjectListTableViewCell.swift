@@ -45,10 +45,20 @@ class SubjectListTableViewCell: BaseTableCell {
         return subject
     }()
     
+    lazy var deleteButton: UIButton = {
+        let delete = UIButton(type: .custom)
+        let image = UIImage(named: "xicone")
+        delete.setBackgroundImage(image, for: UIControl.State.normal)
+        delete.layer.masksToBounds = true
+        
+        return delete
+    }()
+    
     override func addSubview() {
         addSubview(container)
         container.addSubview(image)
         container.addSubview(subjectLabel)
+//        container.addSubview(deleteButton)
     }
     
     override func setConstraint() {
@@ -57,5 +67,7 @@ class SubjectListTableViewCell: BaseTableCell {
         image.anchor(top: container.topAnchor, leading: container.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: -10, left: 15, bottom: 0, right: 0), size: .init(width: 100, height: 100))
         
         subjectLabel.anchor(top: image.topAnchor, leading: image.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 40, left: 120, bottom: 0, right: 0), size: .init(width: 150, height: 20))
+        
+//        deleteButton.anchor(top: container.topAnchor, leading: nil, bottom: nil, trailing: container.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 40, height: 40))
     }
 }

@@ -18,8 +18,15 @@ class SubjectListTableView: BaseView {
         return tableView
     }()
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        
+        return refreshControl
+    }()
+    
     override func addSubviews() {
         addSubview(tableView)
+        tableView.addSubview(refreshControl)
     }
     
     override func setConstraints() {
