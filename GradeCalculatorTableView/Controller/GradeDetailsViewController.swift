@@ -18,10 +18,21 @@ class GradeDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         gradeData()
+        
+        gradeDetailsView.calcButton.addTarget(self, action: #selector(calcData), for: .touchUpInside)
     }
     
-    func getData(registerGrade: RegisterGrades) {
+    init(registerGrade: RegisterGrades) {
         gradeDetailsView.grade = registerGrade
+        super.init(nibName: "GradeDetailsViewController", bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func calcData() {
+        gradeData()
     }
     
     func gradeData() {

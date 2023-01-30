@@ -148,6 +148,20 @@ class GradeDetailsView: BaseView {
         return grade4
     }()
     
+    lazy var calcButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Recalutate Grade", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Montserrat", size: 0)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 20
+        button.layer.borderWidth = 2
+        button.backgroundColor = .black
+        
+        return button
+    }()
+    
     override func addSubviews() {
         addSubview(titleLabel)
         addSubview(nameLabel)
@@ -161,6 +175,7 @@ class GradeDetailsView: BaseView {
         addSubview(grade3Label)
         addSubview(grade4Label)
         addSubview(calcGradeLabel)
+        addSubview(calcButton)
     }
     
     override func setConstraints() {
@@ -186,6 +201,8 @@ class GradeDetailsView: BaseView {
         
         grade4Label.anchor(top: grade4TxtField.topAnchor, leading: nil, bottom: nil, trailing: grade4TxtField.leadingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: -10), size: .init(width: 100, height: 40))
         
-        calcGradeLabel.anchor(top: grade4Label.bottomAnchor, leading: nil, bottom: nil, trailing: grade4Label.trailingAnchor, padding: .init(top: 20, left: 0, bottom: 0, right: 0), size: .init(width: 100, height: 40))
+        calcGradeLabel.anchor(top: grade4Label.bottomAnchor, leading: nil, bottom: nil, trailing: grade4Label.trailingAnchor, padding: .init(top: 30, left: 0, bottom: 0, right: -100), size: .init(width: 120, height: 40))
+        
+        calcButton.anchor(top: calcGradeLabel.bottomAnchor, leading: calcGradeLabel.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 40, left: -50, bottom: 0, right: 0), size: .init(width: 180, height: 50))
     }
 }

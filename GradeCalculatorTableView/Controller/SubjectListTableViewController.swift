@@ -13,9 +13,6 @@ class SubjectListTableViewController: UIViewController {
     let customView = SubjectListTableView()
     var grades: [RegisterGrades] = []
     
-    
-    var listInt = [1, 2, 3, 4, 5, 6]
-    
     override func loadView() {
         view = customView
     }
@@ -66,8 +63,7 @@ extension SubjectListTableViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let gradeDetailViewController = GradeDetailsViewController()
-        gradeDetailViewController.getData(registerGrade: grades[indexPath.row])
+        let gradeDetailViewController = GradeDetailsViewController(registerGrade: grades[indexPath.row])
         self.navigationController?.pushViewController(gradeDetailViewController, animated: true)
     }
     
@@ -81,13 +77,14 @@ extension SubjectListTableViewController: UITableViewDelegate, UITableViewDataSo
             grades.remove(at: indexPath.item)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             
-            
             deleteItemsOfUserDefaults(grades: grades)
         }
     }
     
     func deleteItemsOfUserDefaults(grades: [RegisterGrades]) {
-        UserDefaults.standard.set(grades, forKey: "validation")
+        if let encode = try? JSONEncoder().encode(grades) {
+            UserDefaults.standard.set(encode, forKey: "validation")
+        }
         if let data = UserDefaults.standard.object(forKey: "validation") as? Data,
            let json = try? JSONDecoder().decode(Array<RegisterGrades>.self, from: data) {
             self.grades = json
